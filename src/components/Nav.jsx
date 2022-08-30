@@ -6,8 +6,9 @@ import '../styles/Nav.css';
 export default function NavBar() {
     return (
         <header className="navbar">
-            <div>
-                <h1 width="30" height="30" className="d-inline-block align-top" alt="" >X</h1>
+            <div className="h3">
+             <h1 width="30" height="30" className="d-inline-block align-top"  >Tareas</h1>
+                
             </div>
             <nav>
                 <ul className="list">
