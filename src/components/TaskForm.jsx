@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch} from 'react-redux'
 import {add} from '../redux/actions/actions'
 const TaskForm = () => {
 
@@ -15,15 +15,15 @@ const TaskForm = () => {
 const handleChange= (e)=>{
         setTask(
            { ...task,
-            [e.target.name]: e.target.value}
+            [e.target.name]: e.target.value,
+             id: task.id + 1}
         )
 }
 
+
 const handleSubmit = (e)=>{
     e.preventDefault();
-    console.log(e, task)
     dispatch(add(task))
-    task.id = task.id + 1
 }
 
   return (

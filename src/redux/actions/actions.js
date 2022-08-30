@@ -1,5 +1,3 @@
-export const ADD = 'ADD';
-export const REMOVE = 'REMOVE';
 
-export const add= ()=>{return{type: ADD}}
-export const remove= ()=>{return{type: REMOVE}}
+export const add= (task)=>{return{type: 'ADD', payload: task}}
+export const remove= (id)=>{return{type:'REMOVE', payload: id }}
