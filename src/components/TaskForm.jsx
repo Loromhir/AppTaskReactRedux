@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect, useDispatch} from 'react-redux'
 import {add} from '../redux/actions/actions'
-const TaskForm = () => {
+const TaskForm = ({add}) => {
 
     const [newTask, setNewTask] = useState({
         id: 0,
@@ -39,7 +39,7 @@ const handleSubmit = (e)=>{
 
 function mapDispatchToProps(dispatch){
   return {
-    add: newTask => dispatch(add(newTask))
+    add: task=> dispatch(add(task))
   }
 }
 
