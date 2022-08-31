@@ -1,38 +1,46 @@
 import React, { useState } from 'react'
-import { useDispatch} from 'react-redux'
+import { connect, useDispatch} from 'react-redux'
 import {add} from '../redux/actions/actions'
 const TaskForm = () => {
 
-    const [task, setTask] = useState({
+    const [newTask, setNewTask] = useState({
         id: 0,
         title: '',
         description: '', 
         completed: false
     })
-
-    const dispatch= useDispatch()
+    
+   // const dispatch= useDispatch()
 
 const handleChange= (e)=>{
-        setTask(
-           { ...task,
+        setNewTask(
+           { ...newTask,
             [e.target.name]: e.target.value,
-             id: task.id + 1}
+             id: newTask.id + 1}
         )
 }
 
 
 const handleSubmit = (e)=>{
-    e.preventDefault();
-    dispatch(add(task))
+   e.preventDefault();
+   //add(task)
+  //  dispatch(add(task))
+  
 }
 
   return (
     <form onSubmit={handleSubmit}>
         <input type="text" name='title' placeholder='Titulo' onChange={handleChange}/>
         <textarea name="description" placeholder='Descripcion' onChange={handleChange}></textarea>
-        <button>Guardar</button>
+        <button onClick={()=>add(newTask)}>Guardar</button>
     </form>
   )
 }
 
-export default TaskForm
+function mapDispatchToProps(dispatch){
+  return {
+    add: newTask => dispatch(add(newTask))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(TaskForm)
