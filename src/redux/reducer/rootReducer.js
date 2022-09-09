@@ -27,7 +27,12 @@ const initialState={
         return {
             ...state,
             tasks: state.tasks.filter(task=> task.id !== action.payload) 
-        }    
+        } 
+        case "EDIT": 
+        return {
+            ...state,
+            tasks: state.tasks.filter(task=> task.id !== action.payload) 
+        }     
         default: return {...state};
     }
 }

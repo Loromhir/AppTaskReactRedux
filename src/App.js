@@ -14,6 +14,7 @@ function App() {
         <Route  component={NavBar}/> 
         <Route exact path='/create' component={TaskForm}/> 
         <Route exact path='/' component={TaskList}/> 
+        <Route path='/edit/:id' component={TaskList}/> 
        
     </React.Fragment>
 

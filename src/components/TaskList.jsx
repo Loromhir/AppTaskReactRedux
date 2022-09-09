@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { remove } from '../redux/actions/actions';
 
@@ -16,6 +17,7 @@ import { remove } from '../redux/actions/actions';
                 <p>{task.description}</p>
                 <p>{task.completed ? 'Terminado!' : 'Sin hacer!'}</p>
                 <button onClick={()=>{handleDelete(task.id)}}>Borrar</button>
+                <Link to={`edit/${task.id}`}>Editar</Link>
             </div>
         )
     }

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { connect, useDispatch} from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import {add} from '../redux/actions/actions'
-const TaskForm = ({add}) => {
+import { useParams } from 'react-router-dom'
+const TaskForm = ({add}, task) => {
 
     const [newTask, setNewTask] = useState({
         id: 0,
@@ -9,8 +10,8 @@ const TaskForm = ({add}) => {
         description: '', 
         completed: false
     })
-    
-   // const dispatch= useDispatch()
+const params= useParams()
+
 
 const handleChange= (e)=>{
         setNewTask(
@@ -20,21 +21,30 @@ const handleChange= (e)=>{
         )
 }
 
-
 const handleSubmit = (e)=>{
-   e.preventDefault();
-   //add(task)
-  //  dispatch(add(task))
-  
+   e.preventDefault();  
 }
+
+useEffect((tasks)=>{
+  if(params.id){
+    setNewTask(tasks.find(task=> task.id === params.id))
+  }else{
+    
+  }
+},[])
 
   return (
     <form onSubmit={handleSubmit}>
-        <input type="text" name='title' placeholder='Titulo' onChange={handleChange}/>
-        <textarea name="description" placeholder='Descripcion' onChange={handleChange}></textarea>
+        <input type="text" name='title' placeholder='Titulo' value={task.title} onChange={handleChange}/>
+        <textarea name="description" placeholder='Descripcion' value={task.description} onChange={handleChange}></textarea>
         <button onClick={()=>add(newTask)}>Guardar</button>
     </form>
   )
+}
+function mapStateToProps(state){
+  return{
+    tasks: state.tasks
+  }
 }
 
 function mapDispatchToProps(dispatch){
@@ -43,4 +53,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(null, mapDispatchToProps)(TaskForm)
+export default connect(mapStateToProps, mapDispatchToProps)(TaskForm)
